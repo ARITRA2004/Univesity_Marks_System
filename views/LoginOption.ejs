@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<style>
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        overflow-y: hidden;
+        background-color: black;
+    }
+
+    .all-items {
+        /* border: 2px solid black; */
+        border-radius: 10px;
+        background-color: bisque;
+        height: 14rem;
+        width: 28rem;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        /* box-shadow: rgb(155, 164, 176) 0px 20px 30px -10px; */
+        box-shadow: rgba(216, 210, 210, 0.3) 0px 19px 38px, rgba(232, 222, 222, 0.22) 0px 15px 12px;
+    }
+    .button{
+        margin-top: 20px;
+    }
+    #btn {
+        width: 7rem;
+        height: 30px;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+        background-color: cadetblue;
+    }
+
+    #btn:hover {
+        background-color: rgb(81, 125, 127);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="main-container">
+        <h1 style="color: white;">XYZ University</h1>
+        <div class="all-items">
+            <div>
+                <h2 style="font-size: 2.2rem;">What your roll</h2>
+            </div>
+            <form action="/optionTeacheroStudent" method="post">
+                <label for="">Student</label>
+                <input type="checkbox" name="student" id="student">
+                <label style="margin-left: 30px;" for="teacher">Teacher</label>
+                <input type="checkbox" name="teacher" id="teacher">
+                <div class="button">
+                    <button id="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+
+</html>
