@@ -3,9 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
+    <title>Student Numbers by Subject</title>
+    <style>
+        /* Overall page styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 60%;
+            margin: 50px auto;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        th {
+            background-color: #2c3e50;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        tr {
+            background-color: #ecf0f1;
+            transition: background 0.3s ease;
+        }
+        tr:hover {
+            background-color: #bdc3c7;
+        }
+        td {
+            color: #34495e;
+        }
+        /* Add subtle animation to rows */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        /* Table borders and hover effect */
+        table, th, td {
+            border: none;
+        }
+        /* Table border radius */
+        table {
+            border-radius: 8px;
+        }
+        /* Custom footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            font-size: 1em;
+        }
+    </style>
 </head>
 <body>
-    
+
+    <h1>Number of Students per Subject</h1>
+
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Number of Students</th>
+        </tr>
+        <tr>
+            <td>Math</td>
+            <td>120</td>
+        </tr>
+        <tr>
+            <td>Physics</td>
+            <td>98</td>
+        </tr>
+        <tr>
+            <td>Chemistry</td>
+            <td>87</td>
+        </tr>
+        <tr>
+            <td>History</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td>Data Structures & Algorithms (DSA)</td>
+            <td>110</td>
+        </tr>
+        <tr>
+            <td>Biology</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td>English</td>
+            <td>75</td>
+        </tr>
+        <!-- Add more subjects as needed -->
+    </table>
+
+    <footer>
+        &copy; 2024 University of Engineering and Management
+    </footer>
+
 </body>
 </html>

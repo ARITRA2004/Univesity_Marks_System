@@ -37,6 +37,7 @@ app.post("/optionTeacheroStudent", (req, res) => {
     }
 })
 
+
 app.post("/StudentSubmit", async (req, res) => {
     try {
         let salt = await bcrypt.genSalt(10);
@@ -50,7 +51,7 @@ app.post("/StudentSubmit", async (req, res) => {
 
             let result = await bcrypt.compare(password, student.password);
             if (result) {
-                res.send("Password match");
+                res.redirect("/viewresult");
                 console.log("Password matched");
             } else {
                 res.render("StudentLogin");
@@ -64,7 +65,7 @@ app.post("/StudentSubmit", async (req, res) => {
 
             console.log(StudentDetails.password);
 
-            res.send(StudentDetails);
+            res.render("StudentLogin");
             console.log(StudentDetails);
         }
     }
@@ -73,6 +74,11 @@ app.post("/StudentSubmit", async (req, res) => {
         res.send("Something wents wrong");
     }
 
+})
+
+app.get("/viewresult",(req,res)=>{
+
+    res.render("ViewResult");
 })
 
 app.post("/TeacherSubmit", async (req, res) => {
@@ -101,7 +107,7 @@ app.post("/TeacherSubmit", async (req, res) => {
             })
 
             console.log(TeacherDetails.password);
-
+            res.redirect("TeacherLogin");
             res.send(TeacherDetails);
             console.log(TeacherDetails);
         }
