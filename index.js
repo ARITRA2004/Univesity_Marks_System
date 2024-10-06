@@ -6,6 +6,7 @@ import path from "path";
 import Student from "./routes/studentDetails.js";
 import Teacher from "./routes/TeacherDetails.js";
 import bcrypt from 'bcrypt';
+import marks from "./routes/StudentMarks.js";
 
 
 const app = express();
@@ -51,7 +52,7 @@ app.post("/StudentSubmit", async (req, res) => {
 
             let result = await bcrypt.compare(password, student.password);
             if (result) {
-                res.redirect("/viewresult");
+                res.redirect("/viewresult/student");
                 console.log("Password matched");
             } else {
                 res.render("StudentLogin");
@@ -76,7 +77,7 @@ app.post("/StudentSubmit", async (req, res) => {
 
 })
 
-app.get("/viewresult",(req,res)=>{
+app.get("/viewresult/student", (req, res) => {
 
     res.render("ViewResult");
 })
@@ -94,7 +95,7 @@ app.post("/TeacherSubmit", async (req, res) => {
 
             let result = await bcrypt.compare(password, teacher.password);
             if (result) {
-                res.send("Password match");
+                res.redirect("/uploadmarks/teacher");
                 console.log("Password matched");
             } else {
                 res.render("TeacherLogin");
@@ -108,13 +109,36 @@ app.post("/TeacherSubmit", async (req, res) => {
 
             console.log(TeacherDetails.password);
             res.redirect("TeacherLogin");
-            res.send(TeacherDetails);
+            // res.send(TeacherDetails);
             console.log(TeacherDetails);
         }
     }
     catch (error) {
         console.log(error);
         res.send("Something went wrong");
+    }
+
+})
+
+app.get("/uploadmarks/teacher", (req, res) => {
+    res.render("putStudentMarks");
+})
+app.post("/submit/marks", async (req, res) => {
+
+    try {
+        const allMarks = await marks.create({
+            EnrollmentNo: req.body["enrollment"],
+            MATH: req.body["math"],
+            SDP: req.body["SDP"],
+            ESP: req.body["ESP"],
+            POM: req.body["POM"],
+            DSA: req.body["DSA"]
+        })
+        res.redirect("/uploadmarks/teacher?success=true");
+        console.log(allMarks);
+    }
+    catch (error) {
+        console.log(error);
     }
 
 })

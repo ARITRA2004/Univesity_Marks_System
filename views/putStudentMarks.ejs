@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Student Marks</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+        /* General Styles */
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            width: 800px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .form-group {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 12px;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: #f9fafb;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #4a90e2;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357ABD;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: -300px; /* Hidden outside the screen */
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            transition: right 0.5s ease-in-out;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            right: 20px; /* Slide in */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 30px;
+            }
+
+            .form-group {
+                width: 100%;
+            }
+
+            form {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Student Marks</h2>
+        <form method="post" action="/submit/marks" onsubmit="return handleSubmit(event)" >
+            <div class="form-group">
+                <label for="enrollment">Enrollment Number</label>
+                <input type="text" id="enrollment" name="enrollment" placeholder="Enter Enrollment Number" required>
+            </div>
+            <div class="form-group">
+                <label for="math">Math</label>
+                <input type="number" id="math" name="math" placeholder="Enter Math Marks" required>
+            </div>
+            <div class="form-group">
+                <label for="science">Science</label>
+                <input type="number" id="science" name="SDP" placeholder="Enter SDP Mark" required>
+            </div>
+            <div class="form-group">
+                <label for="english">English</label>
+                <input type="number" id="english" name="ESP" placeholder="Enter ESP mark" required>
+            </div>
+            <div class="form-group">
+                <label for="history">History</label>
+                <input type="number" id="history" name="POM" placeholder="Enter POM Marks" required>
+            </div>
+            <div class="form-group">
+                <label for="computer">Computer Science</label>
+                <input type="number" id="computer" name="DSA" placeholder="Enter DSA Marks" required>
+            </div>
+            <div class="form-group" style="width: 100%;">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <div id="notification" class="notification">
+            Data uploaded successfully!
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+             // Prevent the default form submission
+            const notification = document.getElementById('notification');
+
+            // Show the notification
+            notification.classList.add('show');
+
+            // Hide the notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+
+            // You can add further form handling logic here (like sending the data to the server)
+        }
+    </script>
+</body>
+</html>
