@@ -76,6 +76,8 @@
 </head>
 <body>
 
+    
+    <span><h1>Enrollment No : <% student.enrollmentNumber %></h1></span>
     <h1>Number of Students per Subject</h1>
 
     <table>
@@ -85,31 +87,19 @@
         </tr>
         <tr>
             <td>Math</td>
-            <td>120</td>
+            <td><% student.Math %></td>
         </tr>
         <tr>
-            <td>Physics</td>
-            <td>98</td>
+            <td>SDP</td>
+            <td><% student.SDP %></td>
         </tr>
         <tr>
-            <td>Chemistry</td>
-            <td>87</td>
-        </tr>
-        <tr>
-            <td>History</td>
-            <td>45</td>
+            <td>ESP</td>
+            <td><% student.ESP %></td>
         </tr>
         <tr>
             <td>Data Structures & Algorithms (DSA)</td>
-            <td>110</td>
-        </tr>
-        <tr>
-            <td>Biology</td>
-            <td>60</td>
-        </tr>
-        <tr>
-            <td>English</td>
-            <td>75</td>
+            <td><% student.DSA %></td>
         </tr>
         <!-- Add more subjects as needed -->
     </table>

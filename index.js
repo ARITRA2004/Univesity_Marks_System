@@ -46,14 +46,15 @@ app.post("/StudentSubmit", async (req, res) => {
         let encrypt = await bcrypt.hash(password, salt);
         let finalPassword = encrypt;
         let enrollmentNo = req.body["EnorollmentNumber"];
+        let name = req.body["name"];
 
         let student = await Student.findOne({ EnorollmentNumber: enrollmentNo });
         if (student) {
 
             let result = await bcrypt.compare(password, student.password);
             if (result) {
-                res.redirect("/viewresult/student");
                 console.log("Password matched");
+                res.redirect("/viewresult/student");
             } else {
                 res.render("StudentLogin");
             }
@@ -61,12 +62,14 @@ app.post("/StudentSubmit", async (req, res) => {
         else {
             const StudentDetails = await Student.create({
                 EnorollmentNumber: req.body["EnorollmentNumber"],
-                password: finalPassword
+                password: finalPassword,
+                name: name
             })
 
             console.log(StudentDetails.password);
 
             res.render("StudentLogin");
+            // res.send(StudentDetails);
             console.log(StudentDetails);
         }
     }
@@ -77,8 +80,35 @@ app.post("/StudentSubmit", async (req, res) => {
 
 })
 
-app.get("/viewresult/student", (req, res) => {
+app.get("/viewresult/student",async (req, res) => {
+    
+    try {
+        const enrollmentNumber = req.query.EnorollmentNumber;
+        const name = req.query.name;
+        const Math = 20;
+        const SDP = req.query.SDP;
+        const ESP = req.query.ESP;
+        const DSA = req.query.DSA;
+        console.log(enrollmentNumber);
+        // let studentname = await Student.findOne({name:name});
+        let student = await marks.findOne({EnorollmentNumber:enrollmentNumber});
+        console.log(student);
+        if (!student) {
+            return console.log("404 error");
+        }
 
+        const result = {
+            enrollmentNumber: student.EnorollmentNumber,
+            Math: student.Math,
+            SDP: student.SDP,
+            ESP: student.ESP,
+            DSA: student.DSA
+        };
+        res.render("ViewResult",{student});
+    }
+    catch (error) {
+        res.send(error);
+    }
     res.render("ViewResult");
 })
 
@@ -96,6 +126,7 @@ app.post("/TeacherSubmit", async (req, res) => {
             let result = await bcrypt.compare(password, teacher.password);
             if (result) {
                 res.redirect("/uploadmarks/teacher");
+                // res.send(result);
                 console.log("Password matched");
             } else {
                 res.render("TeacherLogin");
@@ -107,8 +138,8 @@ app.post("/TeacherSubmit", async (req, res) => {
                 password: finalPassword
             })
 
-            console.log(TeacherDetails.password);
-            res.redirect("TeacherLogin");
+            // console.log(TeacherDetails.password);
+            res.render("TeacherLogin");
             // res.send(TeacherDetails);
             console.log(TeacherDetails);
         }

@@ -6,6 +6,7 @@ let student;
 connectDB(student);
 
 const StudentDetails = mongoose.Schema({
+    name:String,
     EnorollmentNumber:Number,
     password:String
 })
