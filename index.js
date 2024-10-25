@@ -7,6 +7,7 @@ import Student from "./routes/studentDetails.js";
 import Teacher from "./routes/TeacherDetails.js";
 import bcrypt from 'bcrypt';
 import marks from "./routes/StudentMarks.js";
+import { log } from "console";
 
 
 const app = express();
@@ -23,21 +24,30 @@ app.get("/", (req, res) => {
     res.render("LoginOption");
 });
 
-app.post("/optionTeacheroStudent", (req, res) => {
+app.post("/loginORregister", (req, res) => {
 
     const { student, teacher } = req.body;
 
     if (student) {
-        res.render("StudentLogin");
+        res.redirect("/student/login");
     }
     else if (teacher) {
-        res.render("TeacherLogin");
+        res.redirect("/teacher/login");
     }
     else {
         res.render("LoginOption");
     }
 })
 
+app.get("/student/login",(req,res)=>{
+    res.render("StudentLogin");
+})
+
+app.get("/teacher/login",(req,res)=>{
+    res.render("TeacherLogin");
+})
+
+let enrollNo;
 
 app.post("/StudentSubmit", async (req, res) => {
     try {
@@ -54,6 +64,7 @@ app.post("/StudentSubmit", async (req, res) => {
             let result = await bcrypt.compare(password, student.password);
             if (result) {
                 console.log("Password matched");
+                enrollNo = enrollmentNo;
                 res.redirect("/viewresult/student");
             } else {
                 res.render("StudentLogin");
@@ -81,35 +92,36 @@ app.post("/StudentSubmit", async (req, res) => {
 })
 
 app.get("/viewresult/student",async (req, res) => {
-    
+    console.log(enrollNo);
     try {
-        const enrollmentNumber = req.query.EnorollmentNumber;
-        const name = req.query.name;
-        const Math = 20;
-        const SDP = req.query.SDP;
-        const ESP = req.query.ESP;
-        const DSA = req.query.DSA;
-        console.log(enrollmentNumber);
-        // let studentname = await Student.findOne({name:name});
-        let student = await marks.findOne({EnorollmentNumber:enrollmentNumber});
-        console.log(student);
-        if (!student) {
-            return console.log("404 error");
+        if (!enrollNo) {
+            res.send("No enrollment number found. Please log in.");
+            return;
         }
 
+        console.log(enrollNo);
+        
+        let student = await marks.findOne({ EnrollmentNo: enrollNo });
+        console.log(student);
+
+        if (!student) {
+            res.send(`${enrollNo} is not present`);
+            return;
+        }
+        console.log(`data found`);
+
         const result = {
-            enrollmentNumber: student.EnorollmentNumber,
-            Math: student.Math,
+            enrollmentNumber: student.EnrollmentNo,
+            Math: student.MATH,
             SDP: student.SDP,
             ESP: student.ESP,
             DSA: student.DSA
         };
-        res.render("ViewResult",{student});
-    }
-    catch (error) {
+
+        res.render("ViewResult", { student: result });
+    } catch (error) {
         res.send(error);
     }
-    res.render("ViewResult");
 })
 
 app.post("/TeacherSubmit", async (req, res) => {
@@ -126,8 +138,9 @@ app.post("/TeacherSubmit", async (req, res) => {
             let result = await bcrypt.compare(password, teacher.password);
             if (result) {
                 res.redirect("/uploadmarks/teacher");
-                // res.send(result);
+                // res.send(result); 
                 console.log("Password matched");
+                
             } else {
                 res.render("TeacherLogin");
             }
@@ -172,10 +185,6 @@ app.post("/submit/marks", async (req, res) => {
         console.log(error);
     }
 
-})
-
-app.post("/signin", (req, res) => {
-    res.send("sign in");
 })
 
 app.listen(port, () => {

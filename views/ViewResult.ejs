@@ -77,7 +77,7 @@
 <body>
 
     
-    <span><h1>Enrollment No : <% student.enrollmentNumber %></h1></span>
+    <span><h1>Enrollment No : <%= student.enrollmentNumber %></h1></span>
     <h1>Number of Students per Subject</h1>
 
     <table>
@@ -87,19 +87,19 @@
         </tr>
         <tr>
             <td>Math</td>
-            <td><% student.Math %></td>
+            <td><%= student.Math %></td>
         </tr>
         <tr>
             <td>SDP</td>
-            <td><% student.SDP %></td>
+            <td><%= student.SDP %></td>
         </tr>
         <tr>
             <td>ESP</td>
-            <td><% student.ESP %></td>
+            <td><%= student.ESP %></td>
         </tr>
         <tr>
             <td>Data Structures & Algorithms (DSA)</td>
-            <td><% student.DSA %></td>
+            <td><%= student.DSA %></td>
         </tr>
         <!-- Add more subjects as needed -->
     </table>
