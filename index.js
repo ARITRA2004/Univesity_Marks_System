@@ -1,23 +1,19 @@
 import express from "express";
-import { dirname, parse } from "path";
-import { fileURLToPath } from "url";
-import bodyParser from "body-parser";
-import path from "path";
-import Student from "./routes/studentDetails.js";
-import Teacher from "./routes/TeacherDetails.js";
+import Student from "./routes/studentDetails.routes.js";
+import Teacher from "./routes/TeacherDetails.routes.js";
 import bcrypt from 'bcrypt';
-import marks from "./routes/StudentMarks.js";
-import { log } from "console";
-
+import marks from "./routes/StudentMarks.routes.js";
 
 const app = express();
 const port = 3000;
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {

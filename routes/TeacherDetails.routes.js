@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import connectDB from "./db.js";
+import connectDB from "./db.routes.js";
 
 // mongoose.connect("mongodb://127.0.0.1:27017/TeacherDetails");
 let TeacherDetails;
