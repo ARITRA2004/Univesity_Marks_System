@@ -1,3 +1,28 @@
-﻿# Univesity_Marks_System
-#How you register and how to login
-This process is applicable for both teachers and student. When one teacher or student first come to website and the have not created any account before they have to fill the form whatevent and then you submit after submitting your details will be save and then the same page will again come and you have to again fills the details and you will sucessfully login, and if you are a student then instanly you will see your result and if teacher then you can upload the full details of marks of that corrosponding student enrollment number.
+# 🎓 University Marks System  
+
+## 📝 How to Register & Login  
+
+This process applies to **both teachers and students**:  
+
+### 1️⃣ New User Registration  
+- If you’re visiting the platform for the first time, you'll need to **create an account** by filling out a simple form.  
+- Submit your details, and your account will be **securely saved** in the system.  
+
+### 2️⃣ Login Process  
+- After successful registration, you will be redirected to the **login page**.  
+- Enter your credentials again to **log in**.  
+
+### 3️⃣ For Students 🎯  
+- Upon logging in, you’ll instantly see your **exam results** displayed on the screen.  
+
+### 4️⃣ For Teachers 📊  
+- You can **upload marks** for students by entering their **enrollment number** and the corresponding scores.  
+
+---
+
+✅ **Seamless & Secure** | 🚀 **Fast & Reliable** | 🎨 **User-Friendly Interface**  
+
+---
+
+💡 **Want to contribute?** Feel free to fork this repo and submit a pull request! 😃  
+
